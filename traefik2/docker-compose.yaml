@@ -1,7 +1,6 @@
 version: "3.3"
 
 services:
-
   traefik:
     image: "traefik:latest"
     container_name: "traefik2"
@@ -14,7 +13,7 @@ services:
       - "--entrypoints.websecure.address=:443"
       # Let's Encrypt
       - "--certificatesresolvers.mytlschallenge.acme.tlschallenge=true"
-      - "--certificatesresolvers.mytlschallenge.acme.email=***youremail@here***"
+      - "--certificatesresolvers.mytlschallenge.acme.email=***letsencrypt_liberty_server@adrw.ch***"
       - "--certificatesresolvers.mytlschallenge.acme.storage=/letsencrypt/acme.json"
       - "--providers.file.directory=/rules"
       - "--providers.file.watch=true"
@@ -35,8 +34,8 @@ services:
     # Logging options: where to log
     logging:
       options:
-        max-size: '12m'
-        max-file: '5'
+        max-size: "12m"
+        max-file: "5"
       driver: json-file
 
 networks:
@@ -45,6 +44,3 @@ networks:
       name: traefik_proxy
   default:
     driver: bridge
-  
-
-
